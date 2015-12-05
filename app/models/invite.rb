@@ -1,0 +1,2 @@
+class Invite < Event
+end

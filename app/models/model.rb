@@ -1,0 +1,2 @@
+class Model < Event
+end

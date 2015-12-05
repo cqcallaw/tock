@@ -1,0 +1,2 @@
+class Join < Event
+end
