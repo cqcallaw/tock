@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206001646) do
+ActiveRecord::Schema.define(version: 20151206013032) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "timestamp"
-    t.integer  "timeline_id"
+    t.integer  "reporter_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "events", ["timeline_id"], name: "index_events_on_timeline_id"
+  add_index "events", ["reporter_id"], name: "index_events_on_reporter_id"
 
   create_table "reporters", force: :cascade do |t|
     t.string   "email"
