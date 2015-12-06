@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205201143) do
+ActiveRecord::Schema.define(version: 20151206001646) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "timestamp"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20151205201143) do
   add_index "events", ["timeline_id"], name: "index_events_on_timeline_id"
 
   create_table "reporters", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "interval"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

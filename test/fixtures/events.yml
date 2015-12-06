@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  timestamp: 2015-12-05 12:11:43
+  timestamp: 2015-12-05 16:16:46
   timeline_id: 
 
 two:
-  timestamp: 2015-12-05 12:11:43
+  timestamp: 2015-12-05 16:16:46
   timeline_id: 

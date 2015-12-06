@@ -18,7 +18,7 @@ class ReportersControllerTest < ActionController::TestCase
 
   test "should create reporter" do
     assert_difference('Reporter.count') do
-      post :create, reporter: { user_id: @reporter.user_id }
+      post :create, reporter: { email: @reporter.email, interval: @reporter.interval, name: @reporter.name, user_id: @reporter.user_id }
     end
 
     assert_redirected_to reporter_path(assigns(:reporter))
@@ -35,7 +35,7 @@ class ReportersControllerTest < ActionController::TestCase
   end
 
   test "should update reporter" do
-    patch :update, id: @reporter, reporter: { user_id: @reporter.user_id }
+    patch :update, id: @reporter, reporter: { email: @reporter.email, interval: @reporter.interval, name: @reporter.name, user_id: @reporter.user_id }
     assert_redirected_to reporter_path(assigns(:reporter))
   end
 

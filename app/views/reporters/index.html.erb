@@ -5,6 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Interval</th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -13,6 +16,9 @@
   <tbody>
     <% @reporters.each do |reporter| %>
       <tr>
+        <td><%= reporter.email %></td>
+        <td><%= reporter.name %></td>
+        <td><%= reporter.interval %></td>
         <td><%= reporter.user %></td>
         <td><%= link_to 'Show', reporter %></td>
         <td><%= link_to 'Edit', edit_reporter_path(reporter) %></td>

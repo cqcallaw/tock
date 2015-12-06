@@ -37,7 +37,13 @@ users = User.create(
   ]
 )
 
-timeline = Timeline.create
+reporters = Reporter.create(
+  [
+    { email: "nana@example.com", name: "Nana", interval: "1 minute", user: users[0] }
+  ]
+)
+
+timeline = Timeline.create(reporter:reporters[0])
 
 Invite.create(timestamp: '2015-10-01 00:12:34 UTC', timeline: timeline)
 Join.create(timestamp: '2015-10-01 00:15:00 UTC', timeline: timeline)
