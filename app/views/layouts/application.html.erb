@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="row">
-      <% if current_user == nil and !((controller_name == 'sessions' and action_name == 'new') or (controller_name == 'registrations' and action_name == 'new'))%>
+      <% if current_user == nil and not open_access? %>
         <% #Don't allow access without a valid user session %>
           <h4 class="text-center">Please
             <%= link_to "sign in", new_user_session_path %> or

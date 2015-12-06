@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Hi
+      <%= @reporter.name %>
+    </h2>
+
+    <%= form_for @reporter, url: "/checkins/" + @reporter.uuid, html: { method: :post } do |f| %>
+    <p class="text-center">
+      <input class="btn btn-primary btn-lg" type="submit" value="Checkin"/>
+      <%end%>
+      <% if @reporter.next_reminder != nil %>
+      You'll be reminded to checkin at
+      <em><%= @reporter.next_reminder.localtime.strftime('%a, %h %d at %r') %></em>
+    </p>
+    <% end %>
+  </div>
+</div>

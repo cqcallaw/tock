@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reporters
   resources :reporters do
     resources :events, shallow: true
   end
@@ -10,6 +9,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'reporters#index'
+
+  get 'checkins/:uuid' => 'checkins#new'
+  post 'checkins/:uuid' => 'checkins#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

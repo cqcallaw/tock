@@ -1,4 +1,4 @@
-<% if !((controller_name == 'sessions' and action_name == 'new') or (controller_name == 'registrations' and action_name == 'new')) %>
+<% if !open_access? %>
 <div class="pull-right" id="user_nav">
   <% if user_signed_in? %>
   Signed in as
