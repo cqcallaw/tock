@@ -39,8 +39,8 @@ users = User.create(
 
 reporters = Reporter.create(
   [
-    { email: "nana@example.com", name: "Nana", interval: "1 minute", user: users[0] },
-    { email: "duckie@example.com", name: "Duckie", interval: "24 hours", user: users[0] }
+    { email: "nana@example.com", name: "Nana", interval: "1 minute", uuid: "9b7593cc-38c7-4e84-a92e-33b8e180d414", user: users[0] },
+    { email: "duckie@example.com", name: "Duckie", interval: "24 hours", uuid: "8a816414-6479-4ccc-b963-1aae41c3528d", user: users[0] }
   ]
 )
 
