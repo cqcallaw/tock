@@ -1,33 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Reporters</h1>
+<%= render @reporters, style: :summary || "No reporters yet." %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Interval</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reporters.each do |reporter| %>
-      <tr>
-        <td><%= reporter.email %></td>
-        <td><%= reporter.name %></td>
-        <td><%= reporter.interval %></td>
-        <td><%= reporter.user %></td>
-        <td><%= link_to 'Show', reporter %></td>
-        <td><%= link_to 'Edit', edit_reporter_path(reporter) %></td>
-        <td><%= link_to 'Destroy', reporter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reporter', new_reporter_path %>
+<%= link_to 'Invite', new_reporter_path %>

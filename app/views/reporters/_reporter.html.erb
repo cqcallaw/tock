@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="pull-right">
+          <%= link_to 'Edit', edit_reporter_path(reporter) %>
+        </div>
+        <h4><%= link_to reporter.name, reporter %></h4>
+      </div>
+      <div class="panel-body">
+        <p><%= reporter.email %>
+          - checks in every
+          <%= link_to reporter.interval, edit_reporter_path(reporter) %></p>
+        <% if style == :summary %>
+        <p>
+          Latest activity:
+          <%= render reporter.ascending_events.first.becomes(Event) || "No events yet." %>
+        </p>
+        <% else %>
+        <%= render reporter.ascending_events.map { |e| e.becomes(Event) } || "No events yet." %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
