@@ -39,7 +39,8 @@ users = User.create(
 
 reporters = Reporter.create(
   [
-    { email: "nana@example.com", name: "Nana", interval: "1 minute", user: users[0] }
+    { email: "nana@example.com", name: "Nana", interval: "1 minute", user: users[0] },
+    { email: "duckie@example.com", name: "Duckie", interval: "24 hours", user: users[0] }
   ]
 )
 
@@ -58,3 +59,5 @@ Optout.create(created_at: '2015-10-04 09:05:00 UTC', reporter: reporters[0])
 Optin.create(created_at: '2015-10-07 12:00:00 UTC', reporter: reporters[0])
 Checkin.create(created_at: '2015-10-08 11:55:00 UTC', reporter: reporters[0])
 Checkin.create(created_at: '2015-10-09 11:55:00 UTC', reporter: reporters[0])
+
+Invite.create(created_at: '2015-11-01 00:12:34 UTC', reporter: reporters[1])

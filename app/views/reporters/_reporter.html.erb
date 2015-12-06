@@ -2,22 +2,29 @@
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <div class="pull-right">
-          <%= link_to 'Edit', edit_reporter_path(reporter) %>
-        </div>
-        <h4><%= link_to reporter.name, reporter %></h4>
+        <h4 class="reporter"><%= reporter.name %></h4>
+        <%= link_to edit_reporter_path(reporter), class: "pull-right reporter-edit" do %>
+        <i class="glyphicon glyphicon-edit"></i>
+        Edit
+        <% end %>
       </div>
       <div class="panel-body">
-        <p><%= reporter.email %>
+        <p class="text-right">
+          <%= mail_to reporter.email %>
           - checks in every
-          <%= link_to reporter.interval, edit_reporter_path(reporter) %></p>
+          <%= reporter.interval %>
+        </p>
         <% if style == :summary %>
         <p>
-          Latest activity:
-          <%= render reporter.ascending_events.first.becomes(Event) || "No events yet." %>
+          <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
         </p>
+        <% if reporter.ascending_events.count > 3 %>
+        <p><%= link_to "...", reporter %></p>
+        <% end %>
         <% else %>
-        <%= render reporter.ascending_events.map { |e| e.becomes(Event) } || "No events yet." %>
+        <p>
+          <%= render reporter.ascending_events.map { |e| e.becomes(Event) } || "No events yet." %>
+        </p>
         <% end %>
       </div>
     </div>

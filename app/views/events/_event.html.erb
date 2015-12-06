@@ -1,3 +1,4 @@
-<div class="event <%= event.type.downcase %>">
-  [<%= event.created_at %>] <%= event.type %>
-</div>
+<span class="event <%= event.type.downcase %>">
+  [<%= event.created_at.localtime %>]
+  <%= event.type %>
+</span><br/>
