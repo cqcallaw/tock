@@ -13,7 +13,10 @@ class Reporter < ActiveRecord::Base
   end
 
   def next_reminder
-    if latest_event.instance_of?(Checkin) || latest_event.instance_of?(Join) || latest_event.instance_of?(Optin)
+    if latest_event.instance_of?(Checkin) \
+      or latest_event.instance_of?(Join) \
+      or latest_event.instance_of?(Notification) \
+      or latest_event.instance_of?(Optin)
       latest_event.created_at + ChronicDuration.parse(interval)
     end
   end
