@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
     (controller_name == 'registrations' and action_name == 'new') \
     or (controller_name == 'sessions' and action_name == 'new') \
     or (controller_name == 'passwords' and action_name == 'new') \
-    or (controller_name == 'checkins' and action_name == 'new')
+    or (controller_name == 'checkins')
   end
 end
