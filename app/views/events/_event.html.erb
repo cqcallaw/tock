@@ -1,4 +1,9 @@
-<p class="event <%= event.type.downcase %>">
+<%
+  event_type = event.type.downcase
+  additional_classes = { "reminder" => "bg-warning", "notification" => "bg-danger"}
+  %>
+
+<p class="event <%= event_type %><%= " " + additional_classes[event_type] unless additional_classes[event_type].nil? %>">
   [<%= event.created_at.localtime.strftime('%a, %h %d at %r') %>]
   <%= event.type %>
 </p>
