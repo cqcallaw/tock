@@ -1,0 +1,2 @@
+class NotifyTask < Task
+end

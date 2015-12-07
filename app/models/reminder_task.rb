@@ -1,0 +1,2 @@
+class ReminderTask < Task
+end

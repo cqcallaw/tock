@@ -9,7 +9,7 @@ gem 'autoprefixer-rails'
 
 gem 'jquery-turbolinks'
 
-gem 'whenever'
+gem 'rufus-scheduler'
 gem 'chronic_duration'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
