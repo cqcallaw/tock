@@ -15,10 +15,10 @@
     <h3 class="text-center">
       <% if @reporter.latest_event.instance_of?(Notification) %>
       No checkin activity since
-      <%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %>! Notification sent.
+      <u><%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %></u>! Notification sent.
       <% elsif @reporter.latest_event.instance_of?(Reminder)%>
       No checkin activity since
-      <%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %>; reminder sent.
+      <u><%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %></u>; reminder sent.
       <% elsif @reporter.next_reminder != nil %>
       You'll be reminded to checkin
       <u><%= @reporter.next_reminder.localtime.strftime('%a, %h %d at %r') %></u>
