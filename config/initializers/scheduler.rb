@@ -47,14 +47,18 @@ scheduler.every '10s' do
   Task.all.each do |task|
     if task.instance_of?(ReminderTask)
       Rails.logger.debug('Dequeuing reminder task')
+      reminder_task = task.becomes(ReminderTask)
       reminder = Reminder.create(reporter: task.reporter)
+      reminder_task.execute
       task.reporter.events.push(reminder)
       task.reporter.task = nil
       task.destroy
       Rails.logger.debug('Finished processing reminder task')
     elsif task.instance_of?(NotifyTask)
       Rails.logger.debug('Dequeuing notification task')
+      notify_task = task.becomes(NotifyTask)
       reminder = Notification.create(reporter: task.reporter)
+      notify_task.execute
       task.reporter.events.push(reminder)
       task.reporter.task = nil
       task.destroy
