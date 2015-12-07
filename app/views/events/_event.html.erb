@@ -1,4 +1,4 @@
-<span class="event <%= event.type.downcase %>">
+<p class="event <%= event.type.downcase %>">
   [<%= event.created_at.localtime.strftime('%a, %h %d at %r') %>]
   <%= event.type %>
-</span><br/>
+</p>

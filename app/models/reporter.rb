@@ -22,4 +22,8 @@ class Reporter < ActiveRecord::Base
       latest_event.created_at + time_interval
     end
   end
+
+  def checkin_url(root_url)
+    root_url + 'checkins/' + uuid
+  end
 end
