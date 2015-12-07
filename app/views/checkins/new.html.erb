@@ -6,7 +6,7 @@
       <%= @reporter.name %>
     </h2>
 
-    <%= form_for @reporter, url: "/checkins/" + @reporter.uuid, html: { method: :post } do |f| %>
+    <%= form_tag "/checkins/" + @reporter.uuid, method: :post do %>
     <p class="text-center">
       <input class="btn btn-primary btn-lg" type="submit" value="Checkin"/>
     </p>
