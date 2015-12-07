@@ -36,7 +36,5 @@ class Reporter < ActiveRecord::Base
 
   def init
     self.uuid = SecureRandom.uuid if uuid.nil?
-    puts 'Whaaa!'
-    puts uuid
   end
 end
