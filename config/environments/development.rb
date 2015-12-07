@@ -38,4 +38,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #ref: http://www.leemunroe.com/send-automated-email-ruby-rails-mailgun/
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'brainvitamins.net/tock' }
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: 'mg.brainvitamins.net',
+    user_name: 'postmaster@mg.brainvitamins.net',
+    password: ENV["MAILGUN_PASSWORD"]
+  }
 end

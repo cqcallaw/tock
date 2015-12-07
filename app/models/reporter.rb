@@ -24,6 +24,12 @@ class Reporter < ActiveRecord::Base
     end
   end
 
+  def alert_time
+    if latest_event.instance_of?(Reminder)
+      latest_event.created_at + time_interval
+    end
+  end
+
   def checkin_url(root_url)
     root_url + 'checkins/' + uuid
   end
