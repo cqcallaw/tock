@@ -8,7 +8,7 @@
 
 users = User.create(
   [
-    { email: 'a@a.com', password: 'a', password_confirmation: 'a' },
+    { email: 'cqcallaw@gmail.com', password: 'a', password_confirmation: 'a' },
     { email: 'b@b.com', password: 'b', password_confirmation: 'b' },
     { email: 'c@c.com', password: 'c', password_confirmation: 'c' },
     { email: 'd@d.com', password: 'd', password_confirmation: 'd' },
