@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<%= render @reporters, style: :summary || "No reporters yet." %>
+<%= render(@reporters, style: :summary, user: @user) || "No reporters yet." %>
 
+<% if not params[:user_id].nil? %>
 <div class="row">
   <div class="col-xs-12">
-    <h4><%= link_to new_reporter_path do %>
+    <h4><%= link_to new_user_reporter_path do %>
       <i class="glyphicon glyphicon-plus"></i>
       Invite
       <% end %></h4>
   </div>
 </div>
+<% end %>

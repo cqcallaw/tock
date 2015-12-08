@@ -4,7 +4,7 @@ class Reporter < ActiveRecord::Base
   belongs_to :user
   has_many :events, dependent: :destroy
   has_one :task, dependent: :destroy
-  before_save :init
+  after_initialize :init
 
   def ascending_events
     events.sort_by(&:created_at).reverse

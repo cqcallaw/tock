@@ -6,20 +6,24 @@ class Mailer < ApplicationMailer
   #   en.mailer.reminder.subject
   #
   def reminder(task)
-    @greeting = 'Hi'
     @task = task
     @alert_time = @task.reporter.alert_time
     mail to: task.reporter.email, subject: '[tock] Checkin Reminder'
   end
 
   def notification(task)
-    @greeting = 'Hi'
     @task = task
     @last_event_time = @task.reporter.latest_event.created_at
     mail to: task.reporter.user.email, subject: '[tock] Inactivity Notification'
   end
 
+  def invite(reporter)
+    @reporter = reporter
+    mail from: reporter.user.email, to: reporter.email, subject: '[tock] Welcome to Tock!'
+  end
+
   def setup
+    @greeting = 'Hi'
     @time_format_string = '%a, %h %d at %r %Z'
   end
 end

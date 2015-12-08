@@ -3,11 +3,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="reporter"><%= reporter.name %></h4>
-        <%= link_to edit_reporter_path(reporter), class: "pull-right reporter-edit" do %>
+        <%= link_to edit_user_reporter_path(:id => reporter.id, :user_id => reporter.user.id), class: "pull-right reporter-edit" do %>
         <i class="glyphicon glyphicon-edit"></i>
         Edit
         <% end %>
-        <%= link_to reporter, method: :delete, data: { confirm: 'Are you sure?' }, class: "pull-right reporter-delete" do %>
+        <%= link_to user_reporter_path(:id => reporter, :user_id => reporter.user.id), method: :delete, data: { confirm: "Are you sure you want to remove #{reporter.name}?" }, class: "pull-right reporter-delete" do %>
         <i class="glyphicon glyphicon-remove"></i>
         Remove
         <% end %>
@@ -24,7 +24,7 @@
             <% if style == :summary %>
             <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
             <% if reporter.ascending_events.count > 3 %>
-            <p><%= link_to "...", reporter %></p>
+            <p><%= link_to "...", user_reporter_path(:id => reporter.id, :user_id => reporter.user.id) %></p>
             <% end %>
             <% else %>
             <%= render reporter.ascending_events.map { |e| e.becomes(Event) } || "No events yet." %>

@@ -1,29 +1,31 @@
-<%= form_for(@reporter) do |f| %>
-  <% if @reporter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reporter.errors.count, "error") %> prohibited this reporter from being saved:</h2>
+<%= form_for([@user, @reporter]) do |f| %>
+<% if @reporter.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@reporter.errors.count, "error") %>
+    prohibited this reporter from being saved:</h2>
 
-      <ul>
-      <% @reporter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @reporter.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :interval %><br>
-    <%= f.text_field :interval %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="field-group">
+  <%= f.label :name %><br>
+  <%= f.text_field :name, class:"form-control" %>
+</div>
+<div class="field-group">
+  <%= f.label :email %><br>
+  <%= f.text_field :email, class:"form-control" %>
+</div>
+<div class="field-group">
+  <%= f.label :interval %><br>
+  <%= f.text_field :interval, class:"form-control" %>
+</div>
+<%= f.hidden_field :user_id, :value => @user.id %>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

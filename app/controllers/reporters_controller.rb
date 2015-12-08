@@ -1,5 +1,5 @@
 class ReportersController < ApplicationController
-  before_action :set_reporter, only: [:show, :edit, :update, :destroy]
+  before_action :set_environment, only: [:show, :edit, :update, :destroy]
 
   # GET /reporters
   # GET /reporters.json
@@ -14,6 +14,7 @@ class ReportersController < ApplicationController
 
   # GET /reporters/new
   def new
+    @user = User.find(params[:user_id])
     @reporter = Reporter.new
   end
 
@@ -26,9 +27,12 @@ class ReportersController < ApplicationController
   def create
     @reporter = Reporter.new(reporter_params)
 
+    Mailer.invite(@reporter).deliver_now
+    Invite.create(reporter: @reporter)
+
     respond_to do |format|
       if @reporter.save
-        format.html { redirect_to @reporter, notice: 'Successfully invited ' + @reporter.name }
+        format.html { redirect_to user_reporter_path(:id => @reporter.id, :user_id => params[:user_id]), notice: 'Successfully invited ' + @reporter.name }
         format.json { render :show, status: :created, location: @reporter }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class ReportersController < ApplicationController
   def update
     respond_to do |format|
       if @reporter.update(reporter_params)
-        format.html { redirect_to @reporter, notice: 'Successfully updated ' + @reporter.name }
+        format.html { redirect_to user_reporter_path(:id => @reporter.id, :user_id => @user.id), notice: 'Successfully updated ' + @reporter.name }
         format.json { render :show, status: :ok, location: @reporter }
       else
         format.html { render :edit }
@@ -56,19 +60,21 @@ class ReportersController < ApplicationController
   def destroy
     @reporter.destroy
     respond_to do |format|
-      format.html { redirect_to reporters_url, notice: 'Successfully removed ' + @reporter.name }
+      format.html { redirect_to user_reporters_url, notice: 'Successfully removed ' + @reporter.name }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reporter
-      @reporter = Reporter.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reporter_params
-      params.require(:reporter).permit(:email, :name, :interval, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_environment
+    @user = User.find(params[:user_id])
+    @reporter = Reporter.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def reporter_params
+    params.require(:reporter).permit(:email, :name, :interval, :user_id)
+  end
 end

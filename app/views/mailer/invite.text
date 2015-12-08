@@ -1,0 +1,3 @@
+<%= @greeting %>! I'd like to invite you to scheduled checkins using Tock. Just click on the following link to join for the first time.
+
+<%= @reporter.checkin_url, @reporter.checkin_url %>
