@@ -76,4 +76,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'brainvitamins.net/tock' }
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: 'mg.brainvitamins.net',
+    user_name: 'postmaster@mg.brainvitamins.net',
+    password: ENV["MAILGUN_PASSWORD"]
+  }
 end
