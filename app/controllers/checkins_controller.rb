@@ -12,7 +12,7 @@ class CheckinsController < ApplicationController
       if @checkin.save
         @reporter.task = nil # reset our notification system
         format.html { render :new, notice: 'Checked in at <time>' }
-        format.json { render :new, status: :created, location: '/checkins/' + params[:uuid] }
+        format.json { render :new, status: :created, location: root_url + 'checkins/' + params[:uuid] }
       else
         format.html { render :new, notice: 'Checkin failed.' }
         format.json { render json: checkin.errors, status: :unprocessable_entity }
