@@ -24,10 +24,8 @@ class Reporter < ActiveRecord::Base
     end
   end
 
-  def alert_time
-    if latest_event.instance_of?(Reminder)
-      latest_event.created_at + time_interval
-    end
+  def notification_time
+    Time.now + time_interval
   end
 
   def checkin_url(root_url)

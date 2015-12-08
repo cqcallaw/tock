@@ -7,7 +7,7 @@ class Mailer < ApplicationMailer
   #
   def reminder(task)
     @task = task
-    @alert_time = @task.reporter.alert_time
+    @notification_time = @task.reporter.notification_time
     mail to: task.reporter.email, subject: '[tock] Checkin Reminder'
   end
 

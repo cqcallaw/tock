@@ -44,24 +44,42 @@ end
 scheduler.every '10s' do
   # consume tasks
   Task.all.each do |task|
-    if task.instance_of?(ReminderTask)
-      Rails.logger.debug('[Consumer] Dequeuing reminder task')
-      reminder_task = task.becomes(ReminderTask)
-      reminder_task.execute
-      reminder = Reminder.create(reporter: task.reporter)
-      task.reporter.events.push(reminder)
-      task.reporter.task = nil
-      task.destroy
-      Rails.logger.debug('[Consumer] Finished processing reminder task')
-    elsif task.instance_of?(NotifyTask)
-      Rails.logger.debug('[Consumer] Dequeuing notification task')
-      notify_task = task.becomes(NotifyTask)
-      notify_task.execute
-      reminder = Notification.create(reporter: task.reporter)
-      task.reporter.events.push(reminder)
-      task.reporter.task = nil
-      task.destroy
-      Rails.logger.debug('[Consumer] Finished processing notification task')
+    unless task.processing
+      Rails.logger.debug("[Consumer] #{task} Dequeuing")
+      begin
+        task.processing = true # flag this task as being processed
+        task.save
+
+        Rails.logger.debug("[Consumer] #{task} Executing task")
+        task.execute
+        Rails.logger.debug("[Consumer] #{task} Finished executing task")
+
+        if task.instance_of?(ReminderTask)
+          Reminder.create(reporter: task.reporter)
+        elsif task.instance_of?(NotifyTask)
+          Notification.create(reporter: task.reporter)
+        end
+
+        Rails.logger.debug("[Consumer] #{task} Destroying task")
+        task.reporter.task = nil
+        task.destroy
+        Rails.logger.debug("[Consumer] #{task} Finished destroying task")
+      rescue Exception => e
+        if task.attempts > 2
+          Rails.logger.debug('[Consumer] #{task} More than 3 attempts made, deleting task')
+          task.reporter.task = nil
+          task.destroy
+          Rails.logger.debug("[Consumer] #{task} Finished deleting task")
+        else
+          Rails.logger.debug("[Consumer] #{task} Error: " + e.to_s)
+          Rails.logger.debug("[Consumer] #{task} Task attempt failed; re-enqueuing")
+          task.attempts += 1
+          task.processing = false
+          task.save
+          Rails.logger.debug("[Consumer] #{task} Finished re-enqueuing task")
+        end
+      end
+      Rails.logger.debug("[Consumer] #{task} Finished processing")
     end
   end
 end

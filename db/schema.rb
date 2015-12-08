@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208050256) do
+ActiveRecord::Schema.define(version: 20151208195741) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "reporter_id"
@@ -37,9 +37,11 @@ ActiveRecord::Schema.define(version: 20151208050256) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "reporter_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "type"
+    t.integer  "attempts",    default: 0
+    t.boolean  "processing",  default: false
   end
 
   add_index "tasks", ["reporter_id"], name: "index_tasks_on_reporter_id"

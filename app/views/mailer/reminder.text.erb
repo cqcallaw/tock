@@ -2,6 +2,6 @@
 
 We noticed you haven't checked in recently! Please checkin at <%= @task.reporter.checkin_url(root_url) %> as soon as possible.
 
-If we don't hear from you before <%= @alert_time.strftime(@time_format_string) %>, we'll send out a notification.
+If we don't hear from you before <%= @notification_time.strftime(@time_format_string) %>, we'll send out a notification.
 
 -Tock
