@@ -10,12 +10,16 @@ class Reporter < ActiveRecord::Base
     events.sort_by(&:created_at).reverse
   end
 
+  def paginated_ascending_events(page_id)
+    Event.where(reporter_id: id).paginate(page: page_id).order('created_at DESC')
+  end
+
   def latest_event
     ascending_events.first
   end
 
   def time_interval
-    ChronicDuration.parse(interval.to_s + " " + interval_units)
+    ChronicDuration.parse(interval.to_s + ' ' + interval_units)
   end
 
   def next_reminder

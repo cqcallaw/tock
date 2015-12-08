@@ -12,6 +12,8 @@ gem 'jquery-turbolinks'
 gem 'rufus-scheduler'
 gem 'chronic_duration'
 
+gem 'will_paginate'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record

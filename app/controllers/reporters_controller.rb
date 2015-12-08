@@ -5,7 +5,7 @@ class ReportersController < ApplicationController
   # GET /reporters.json
   def index
     @user = current_user
-    if not @user.nil?
+    unless @user.nil?
       @reporters = Reporter.where(user_id: @user.id)
     end
   end
@@ -13,6 +13,7 @@ class ReportersController < ApplicationController
   # GET /reporters/1
   # GET /reporters/1.json
   def show
+    @page_id = params[:page]
   end
 
   # GET /reporters/new
@@ -35,7 +36,7 @@ class ReportersController < ApplicationController
 
     respond_to do |format|
       if @reporter.save
-        format.html { redirect_to user_reporter_path(:id => @reporter.id, :user_id => params[:user_id]), notice: 'Successfully invited ' + @reporter.name }
+        format.html { redirect_to user_reporter_path(id: @reporter.id, user_id: params[:user_id]), notice: 'Successfully invited ' + @reporter.name }
         format.json { render :show, status: :created, location: @reporter }
       else
         format.html { render :new }
@@ -49,7 +50,7 @@ class ReportersController < ApplicationController
   def update
     respond_to do |format|
       if @reporter.update(reporter_params)
-        format.html { redirect_to user_reporter_path(:id => @reporter.id, :user_id => @user.id), notice: 'Successfully updated ' + @reporter.name }
+        format.html { redirect_to user_reporter_path(id: @reporter.id, user_id: @user.id), notice: 'Successfully updated ' + @reporter.name }
         format.json { render :show, status: :ok, location: @reporter }
       else
         format.html { render :edit }
@@ -78,6 +79,6 @@ class ReportersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reporter_params
-    params.require(:reporter).permit(:email, :name, :interval, :interval_units, :user_id)
+    params.require(:reporter).permit(:email, :name, :interval, :interval_units, :user_id, :page)
   end
 end

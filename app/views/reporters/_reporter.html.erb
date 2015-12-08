@@ -27,7 +27,8 @@
             <p><%= link_to "...", user_reporter_path(:id => reporter.id, :user_id => reporter.user.id) %></p>
             <% end %>
             <% else %>
-            <%= render reporter.ascending_events.map { |e| e.becomes(Event) } || "No events yet." %>
+            <%= render reporter.paginated_ascending_events(page_id).map { |e| e.becomes(Event) } %>
+            <%= will_paginate reporter.paginated_ascending_events(page_id) %>
             <% end %>
           </div>
         </div>
