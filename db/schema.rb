@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207041853) do
+ActiveRecord::Schema.define(version: 20151208050256) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "reporter_id"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20151207041853) do
   create_table "reporters", force: :cascade do |t|
     t.string   "email"
     t.string   "name"
-    t.string   "interval"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "uuid"
+    t.integer  "interval"
+    t.string   "interval_units"
   end
 
   add_index "reporters", ["user_id"], name: "index_reporters_on_user_id"

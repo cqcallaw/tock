@@ -22,10 +22,17 @@
 </div>
 <div class="field-group">
   <%= f.label :interval %><br>
-  <%= f.text_field :interval, class:"form-control" %>
+  <div class="row">
+    <div class="col-xs-6">
+      <%= f.number_field :interval, min: 1, class:"form-control" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.select :interval_units, options_for_select([ "days", "hours", "minutes" ], @reporter.interval_units), {}, {class: "form-control"} %>
+    </div>
+  </div>
 </div>
 <%= f.hidden_field :user_id, :value => @user.id %>
 <div class="actions">
-  <%= f.submit %>
+  <%= f.submit 'Update', :class => "btn btn-primary" %>
 </div>
 <% end %>

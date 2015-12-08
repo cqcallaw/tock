@@ -1,5 +1,4 @@
 require 'rufus-scheduler'
-require 'chronic_duration'
 
 scheduler = Rufus::Scheduler.new
 

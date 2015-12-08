@@ -15,7 +15,7 @@ class Reporter < ActiveRecord::Base
   end
 
   def time_interval
-    ChronicDuration.parse(interval)
+    ChronicDuration.parse(interval.to_s + " " + interval_units)
   end
 
   def next_reminder

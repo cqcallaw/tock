@@ -16,7 +16,7 @@
         <p class="text-right">
           <%= mail_to reporter.email %>
           - checkin every
-          <%= reporter.interval %><br/>Checkin link:
+          <%= pluralize(reporter.interval, reporter.interval_units.singularize) %><br/>Checkin link:
           <%= link_to reporter.checkin_url(root_url), reporter.checkin_url(root_url), target: '_blank' %>
         </p>
         <div class="panel panel-default">
