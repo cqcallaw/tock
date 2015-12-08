@@ -1,3 +1,4 @@
+#ref: http://www.leemunroe.com/send-automated-email-ruby-rails-mailgun/
 Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'www.brainvitamins.net' }
