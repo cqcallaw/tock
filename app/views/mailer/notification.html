@@ -1,11 +1,6 @@
-<h1>Inactivity Alert</h1>
-
 <p>
-  We noticed
-  <%= link_to @task.reporter.name, @task.reporter %> hasn't checked in recently.
+  <%= @greeting %>! We noticed
+    <%= link_to @task.reporter.name, @task.reporter %> hasn't checked in recently. Last activity was on
+      <%= @last_event_time.strftime(@time_format_string) %>.
 </p>
-
-<p>
-  Last activity was on
-  <%= @last_event_time.strftime(@time_format_string) %>.
-</p>
+<p>-Tock</p>

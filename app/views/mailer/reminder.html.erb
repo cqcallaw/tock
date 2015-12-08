@@ -1,8 +1,9 @@
-<h1>Please Checkin</h1>
-
 <p>
   <%= @greeting %>
-  <%= @task.reporter.name %>, we noticed you haven't checked in recently! Please
+  <%= @task.reporter.name %>,
+</p>
+
+<p>We noticed you haven't checked in recently! Please
   <%= link_to 'checkin', @task.reporter.checkin_url(root_url) %>
   as soon as possible.
 </p>
@@ -11,3 +12,5 @@
   If we don't hear from you before
   <%= @alert_time.strftime(@time_format_string) %>, we'll send out a notification.
 </p>
+
+<p>-Tock</p>
