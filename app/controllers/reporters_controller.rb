@@ -4,7 +4,10 @@ class ReportersController < ApplicationController
   # GET /reporters
   # GET /reporters.json
   def index
-    @reporters = Reporter.all
+    @user = current_user
+    if not @user.nil?
+      @reporters = Reporter.where(user_id: @user.id)
+    end
   end
 
   # GET /reporters/1
