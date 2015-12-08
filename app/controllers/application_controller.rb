@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def open_access?
     (controller_name == 'registrations' and action_name == 'new') \
+    or (controller_name == 'registrations' and action_name == 'create') \
     or (controller_name == 'sessions' and action_name == 'new') \
     or (controller_name == 'passwords' and action_name == 'new') \
     or (controller_name == 'checkins')
