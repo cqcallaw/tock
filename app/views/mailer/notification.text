@@ -1,0 +1,3 @@
+We noticed @task.reporter.name hasn't checked in recently.
+
+Last activity was on <%= @last_event_time.strftime(@time_format_string) %>.

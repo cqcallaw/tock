@@ -9,5 +9,5 @@
 
 <p>
   If we don't hear from you before
-  <%= @task.reporter.alert_time.strftime('%a, %h %d at %r') %>, we'll send out an alert.
+  <%= @alert_time.strftime(@time_format_string) %>, we'll send out a notification.
 </p>
