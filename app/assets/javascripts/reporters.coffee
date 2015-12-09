@@ -20,14 +20,17 @@ $(document).on "page:change", ->
       data = JSON.parse(event.data)
       time = data['time']
       type = data['type']
-      additional_classes = additional_event_classes[type]
-      $("##{container_id} p:last-child").remove()
-      new_entry = $('<p>').attr('class', 'event')
 
+      container_child_count = $("##{container_id} p").length
+      if container_child_count >= 3
+        $("##{container_id} p:last-child").remove()
+
+      new_entry = $('<p>').attr('class', 'event')
+      additional_classes = additional_event_classes[type]
       if additional_classes
         new_entry = new_entry.addClass(additional_classes)
-
       new_entry = new_entry.text("[" + time + "] " + type)
+
       $("##{container_id}").prepend(new_entry)
       console.log("Processed Tock event.")
 
