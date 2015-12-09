@@ -23,17 +23,7 @@
         <div class="panel panel-default">
           <div class="panel-body bg-info">
             <% if style == :summary %>
-            <script>
-              $(function () {
-                var tock_event_id = '<%= event_id %>';
-                var source = new EventSource('<%= "#{root_url}users/#{reporter.user.id}/reporters/#{reporter.id}/events" %>');
-                source.addEventListener('event', function (e) {
-                  window.event_update_handler(e, tock_event_id);
-                });
-                console.log("Registered handler for " + tock_event_id);
-              });
-            </script>
-            <div id="<%= event_id %>">
+            <div id="<%= event_id %>" class="event_stream">
               <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
             </div>
             <% if reporter.ascending_events.count > 3 %>
