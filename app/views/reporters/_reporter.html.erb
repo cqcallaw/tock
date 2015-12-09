@@ -24,7 +24,7 @@
             <% if style == :summary %>
             <script>
               $(function () {
-                var source = new EventSource('/users/<%= reporter.user.id %>/reporters/<%= reporter.id %>/events');
+                var source = new EventSource('<%= "#{root_url}users/#{reporter.user.id}/reporters/#{reporter.id}/events" %>');
                 source.addEventListener('event', function (e) {
                   console.log("Received event");
                   //data = e.data;
