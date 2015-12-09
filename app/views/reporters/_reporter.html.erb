@@ -22,6 +22,15 @@
         <div class="panel panel-default">
           <div class="panel-body bg-info">
             <% if style == :summary %>
+            <script>
+              $(function () {
+                var source = new EventSource('/users/<%= reporter.user.id %>/reporters/<%= reporter.id %>/events');
+                source.addEventListener('event', function (e) {
+                  console.log("Received event");
+                  //data = e.data;
+                });
+              });
+            </script>
             <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
             <% if reporter.ascending_events.count > 3 %>
             <p><%= link_to "...", user_reporter_path(:id => reporter.id, :user_id => reporter.user.id) %></p>

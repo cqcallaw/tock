@@ -5,9 +5,7 @@ class ReportersController < ApplicationController
   # GET /reporters.json
   def index
     @user = current_user
-    unless @user.nil?
-      @reporters = Reporter.where(user_id: @user.id)
-    end
+    @reporters = Reporter.where(user_id: @user.id) unless @user.nil?
   end
 
   # GET /reporters/1

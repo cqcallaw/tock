@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'checkins/:uuid' => 'checkins#new'
   post 'checkins/:uuid' => 'checkins#create'
 
+  get 'users/:id/reporters/:reporter_id/events' => 'events#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

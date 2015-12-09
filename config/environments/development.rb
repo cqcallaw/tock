@@ -38,4 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #ref: http://stackoverflow.com/a/30228125/577298
+  config.allow_concurrency=true
 end

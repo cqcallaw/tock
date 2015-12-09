@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208195741) do
+ActiveRecord::Schema.define(version: 20151209054103) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "reporter_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "type"
+    t.boolean  "broadcast",   default: false, null: false
   end
 
   add_index "events", ["reporter_id"], name: "index_events_on_reporter_id"
