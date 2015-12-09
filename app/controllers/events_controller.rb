@@ -20,7 +20,10 @@ class EventsController < ApplicationController
           events = Event.where(reporter_id: reporter_id, broadcast: false)
           if events.any?
             events.each do |event|
-              sse.write(event.as_json, event: 'event')
+              data = {}
+              data[:time] = event.created_at.localtime.strftime('%a, %h %d at %r')
+              data[:type] = event.type
+              sse.write(data, event: 'event')
             end
             events.update_all(broadcast: true)
           else

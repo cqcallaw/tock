@@ -1,6 +1,6 @@
 <%
   event_type = event.type.downcase
-  additional_classes = { "reminder" => "bg-warning", "notification" => "bg-danger"}
+  additional_classes = { "reminder" => "bg-warning", "notification" => "bg-danger" }
   %>
 
 <p class="event <%= event_type %><%= " " + additional_classes[event_type] unless additional_classes[event_type].nil? %>">

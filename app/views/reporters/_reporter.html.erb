@@ -1,3 +1,4 @@
+<% event_id = "user#{reporter.user.id}reporter#{reporter.id}" %>
 <div class="row">
   <div class="col-xs-12">
     <div class="panel panel-default">
@@ -24,14 +25,17 @@
             <% if style == :summary %>
             <script>
               $(function () {
+                var tock_event_id = '<%= event_id %>';
                 var source = new EventSource('<%= "#{root_url}users/#{reporter.user.id}/reporters/#{reporter.id}/events" %>');
                 source.addEventListener('event', function (e) {
-                  console.log("Received event");
-                  //data = e.data;
+                  window.event_update_handler(e, tock_event_id);
                 });
+                console.log("Registered handler for " + tock_event_id);
               });
             </script>
-            <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
+            <div id="<%= event_id %>">
+              <%= render reporter.ascending_events[0..2].map { |e| e.becomes(Event) } || "No events yet." %>
+            </div>
             <% if reporter.ascending_events.count > 3 %>
             <p><%= link_to "...", user_reporter_path(:id => reporter.id, :user_id => reporter.user.id) %></p>
             <% end %>
