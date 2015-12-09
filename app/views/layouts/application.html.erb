@@ -21,18 +21,11 @@
       </div>
     </div>
     <div class="row">
-      <% if current_user == nil and not open_access? %>
-        <% #Don't allow access without a valid user session %>
-          <h4 class="text-center">Please
-            <%= link_to "sign in", new_user_session_path %> or
-              <%= link_to "sign up", new_user_registration_path %> to continue.</h4>
-          <% else %>
-            <%= render partial: 'user_nav' %>
-              <p class="alert">
-                <%= alert %>
-              </p>
-              <%= yield %>
-                <% end %>
+      <%= render partial: 'user_nav' %>
+        <p class="alert">
+          <%= alert %>
+        </p>
+        <%= yield %>
     </div>
   </div>
 </body>

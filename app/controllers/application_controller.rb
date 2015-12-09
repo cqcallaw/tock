@@ -3,13 +3,25 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :open_access?
+  before_filter :authenticate!
 
-  def open_access?
-    (controller_name == 'registrations' and action_name == 'new') \
-    or (controller_name == 'registrations' and action_name == 'create') \
-    or (controller_name == 'sessions' and action_name == 'new') \
-    or (controller_name == 'passwords' and action_name == 'new') \
-    or (controller_name == 'checkins')
-  end
+  def authenticate!
+    # use the devise authenticate to make sure a user is signed in
+    # Could customize by checking for each controller/action pair
+    return if controller_name == 'checkins'
+
+    authenticate_user!
+
+    # only allow a user to edit/update or delete reporters created by the user
+    if controller_name == 'reporter' && (action_name == 'edit' || action_name == 'update' || action_name == 'destroy')
+      current_rating = Reporter.find(params[:reporter_id])
+
+      if reporter.user_id == current_user.id
+        return
+      else
+        # by redirecting here, we are preventing the user from visiting the requested page
+        redirect_to root_url, notice: 'Record not found'
+      end
+    end
+ end
 end

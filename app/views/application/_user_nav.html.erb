@@ -1,4 +1,4 @@
-<% if !open_access? %>
+<% if controller_name != "checkins" %>
 <div class="pull-right" id="user_nav">
   <% if user_signed_in? %>
   Signed in as
