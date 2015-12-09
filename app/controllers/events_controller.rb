@@ -9,8 +9,8 @@ class EventsController < ApplicationController
 
     sse = ActionController::Live::SSE.new(response.stream)
 
-    user_id = params[:id]
     reporter_id = params[:reporter_id]
+    user = User.find(params[:user_id])
 
     begin
       loop do
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
           if events.any?
             events.each do |event|
               data = {}
-              data[:time] = event.created_at.localtime.strftime('%a, %h %d at %r')
+              data[:time] = event.created_at.in_time_zone(user.timezone).strftime(Rails.application.config.timestamp_format_string)
               data[:type] = event.type
               sse.write(data, event: 'event')
             end

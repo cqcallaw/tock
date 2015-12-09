@@ -4,6 +4,6 @@
   %>
 
 <p class="event <%= event_type %><%= " " + additional_classes[event_type] unless additional_classes[event_type].nil? %>">
-  [<%= event.created_at.localtime.strftime('%a, %h %d at %r') %>]
+  [<%= event.created_at.in_time_zone(event.reporter.user.timezone).strftime(Rails.application.config.timestamp_format_string) %>]
   <%= event.type %>
 </p>

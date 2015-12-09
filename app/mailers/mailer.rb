@@ -7,13 +7,13 @@ class Mailer < ApplicationMailer
   #
   def reminder(task)
     @task = task
-    @notification_time = @task.reporter.notification_time
+    @notification_time = @task.reporter.notification_time.in_time_zone(@task.reporter.timezone)
     mail to: task.reporter.email, subject: '[tock] Checkin Reminder'
   end
 
   def notification(task)
     @task = task
-    @last_event_time = @task.reporter.latest_event.created_at
+    @last_event_time = @task.reporter.latest_event.created_at.in_time_zone(@task.reporter.user.timezone)
     mail to: task.reporter.user.email, subject: '[tock] Inactivity Notification'
   end
 
@@ -24,6 +24,6 @@ class Mailer < ApplicationMailer
 
   def setup
     @greeting = 'Hi'
-    @time_format_string = '%a, %h %d at %r %Z'
+    @time_format_string = Rails.application.config.timestamp_format_string
   end
 end

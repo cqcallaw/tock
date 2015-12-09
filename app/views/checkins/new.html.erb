@@ -15,13 +15,13 @@
     <h3 class="text-center">
       <% if @reporter.latest_event.instance_of?(Notification) %>
       No checkin activity since
-      <u><%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %></u>! Notification sent.
+      <u><%= @reporter.latest_event.created_at.in_time_zone(@reporter.timezone).strftime(Rails.application.config.timestamp_format_string) %></u>! Notification sent.
       <% elsif @reporter.latest_event.instance_of?(Reminder) %>
       No checkin activity since
-      <u><%= @reporter.latest_event.created_at.localtime.strftime('%a, %h %d at %r') %></u>; reminder sent.
+      <u><%= @reporter.latest_event.created_at.in_time_zone(@reporter.timezone).strftime(Rails.application.config.timestamp_format_string) %></u>; reminder sent.
       <% elsif @reporter.next_reminder != nil %>
       You'll be reminded to checkin
-      <u><%= @reporter.next_reminder.localtime.strftime('%a, %h %d at %r') %></u>
+      <u><%= @reporter.next_reminder.in_time_zone(@reporter.timezone).strftime(Rails.application.config.timestamp_format_string) %></u>
       <% end %>
     </h3>
   </div>
