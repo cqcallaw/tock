@@ -5,6 +5,7 @@ class Reporter < ActiveRecord::Base
   has_many :events, dependent: :destroy
   has_one :task, dependent: :destroy
   after_initialize :init
+  validates :timezone, presence: true
 
   def ascending_events
     events.sort_by(&:created_at).reverse

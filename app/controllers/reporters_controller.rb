@@ -77,6 +77,6 @@ class ReportersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reporter_params
-    params.require(:reporter).permit(:email, :name, :interval, :interval_units, :user_id, :page)
+    params.require(:reporter).permit(:email, :name, :interval, :interval_units, :user_id, :page, :timezone)
   end
 end

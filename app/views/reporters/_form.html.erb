@@ -21,6 +21,10 @@
   <%= f.text_field :email, class:"form-control" %>
 </div>
 <div class="field-group">
+  <%= f.label :timezone %>
+  <%= f.time_zone_select :timezone, nil, {}, { :class => "form-control" } %>
+</div>
+<div class="field-group">
   <%= f.label :interval %><br>
   <div class="row">
     <div class="col-xs-6">

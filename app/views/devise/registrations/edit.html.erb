@@ -37,6 +37,11 @@
     <%= f.password_field :current_password, autocomplete: "off", class:"form-control" %>
   </div>
 
+  <div class="field-group">
+    <%= f.label :timezone %>
+    <%= f.time_zone_select :timezone, nil, {}, { :class => "form-control" } %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update", class: "btn btn-primary pull-right" %>
   </div>

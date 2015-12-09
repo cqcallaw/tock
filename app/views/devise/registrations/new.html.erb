@@ -26,6 +26,11 @@
       <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
     </div>
 
+    <div class="field-group">
+        <%= f.label :timezone %>
+        <%= f.time_zone_select :timezone, nil, {}, { :class => "form-control" } %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary pull-right" %>
     </div>

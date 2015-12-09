@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :authenticate!
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :timezone
+    devise_parameter_sanitizer.for(:account_update) << :timezone
+  end
 
   def authenticate!
     # use the devise authenticate to make sure a user is signed in
