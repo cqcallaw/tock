@@ -33,10 +33,6 @@ class Reporter < ActiveRecord::Base
     Time.now + time_interval
   end
 
-  def checkin_url(root_url)
-    root_url + 'checkins/' + uuid
-  end
-
   def init
     self.uuid = SecureRandom.uuid if uuid.nil?
   end

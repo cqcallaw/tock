@@ -4,7 +4,7 @@
 </p>
 
 <p>We noticed you haven't checked in recently! Please
-  <%= link_to 'checkin', @task.reporter.checkin_url(root_url) %>
+  <%= link_to 'checkin', url_for(:controller => "checkins", :action => "new", :uuid => @task.reporter.uuid) %>
   as soon as possible.
 </p>
 

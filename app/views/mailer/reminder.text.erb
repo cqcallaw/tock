@@ -1,6 +1,6 @@
 <%= @greeting %> <%= @task.reporter.name %>,
 
-We noticed you haven't checked in recently! Please checkin at <%= @task.reporter.checkin_url(root_url) %> as soon as possible.
+We noticed you haven't checked in recently! Please checkin at <%= url_for(:controller => "checkins", :action => "new", :uuid => @task.reporter.uuid) %> as soon as possible.
 
 If we don't hear from you before <%= @notification_time.strftime(@time_format_string) %>, we'll send out a notification.
 
