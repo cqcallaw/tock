@@ -1,4 +1,4 @@
 <p>
   <%= @greeting %>! I'd like to invite you to scheduled
-    <%= link_to 'checkins', @reporter.checkin_url(root_url) %> using Tock. Just click on the link to join and checkin for the first time.
+    <%= link_to 'checkins', url_for(:controller => "checkins", :action => "new", :uuid => @reporter.uuid) %> using Tock. Just click on the link to join and checkin for the first time.
 </p>
