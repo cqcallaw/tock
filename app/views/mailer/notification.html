@@ -1,6 +1,6 @@
 <p>
   <%= @greeting %>! We noticed
-    <%= link_to @task.reporter.name, root_url + user_reporter_path(:id => @task.reporter.id, :user_id => @task.reporter.user.id) %> hasn't checked in recently. Last activity was on
+    <%= link_to @task.reporter.name, user_reporter_url(:id => @task.reporter.id, :user_id => @task.reporter.user.id) %> hasn't checked in recently. Last activity was on
       <%= @last_event_time.strftime(@time_format_string) %>.
 </p>
 <p>-Tock</p>
