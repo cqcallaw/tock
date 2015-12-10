@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209191301) do
+ActiveRecord::Schema.define(version: 20151210175309) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "reporter_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20151209191301) do
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.string   "uuid"
-    t.integer  "interval"
-    t.string   "interval_units"
+    t.integer  "interval",       default: 1
+    t.string   "interval_units", default: "days"
     t.string   "timezone",       default: "Pacific Time (US & Canada)"
   end
 
